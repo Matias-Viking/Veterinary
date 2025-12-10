@@ -52,8 +52,17 @@
 				"noUnusedPrivateClassMembers":"error",
 				"noUnusedVariables":"error",
 				"noVoidTypeReturn":"error",
-				"useImportExtensions":"error"
+				"useImportExtensions":"error",
+				"useIsNan":"error",
+				"useValidForDirection":"error",
+				"useValidTypeof":"error",
+				"useYield":"error"
 
+			},
+			"performance":"warn",
+			"security":"warn",
+			"style":{
+				
 			}
 		}
 	},
