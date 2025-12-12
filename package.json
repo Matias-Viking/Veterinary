@@ -8,7 +8,7 @@
         "node": ">=18"
     },
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
+        "test": "vitest run --coverage",
         "dev": "npx kill-port 8080 && tsx watch src/app.ts",
         "start": "node dist/app.js",
         "biome:check": "biome check . --write",
@@ -21,6 +21,7 @@
     "devDependencies": {
         "@biomejs/biome": "2.3.8",
         "@types/node": "^24.10.2",
+        "@vitest/coverage-v8": "^4.0.15",
         "kill-port": "^2.0.1",
         "tsx": "^4.21.0",
         "typescript": "^5.9.3",

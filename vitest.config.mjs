@@ -1,6 +1,6 @@
 /// <reference types="vitest"/>
 import "reflect-metadata";
-import defineConfig from "vitest/config";
+import { defineConfig } from "vitest/config";
 
 export default defineConfig({
     root:__dirname,
@@ -10,12 +10,9 @@ export default defineConfig({
         globals:true,
         environment:"node",
         include:["tests/**/*.test.ts"],
-        reporters:["verbose","vitest-sonar-reporter"],
-        outputFile:{
-            "vitest-sonar-reporter":"./coverage/test-reporter.xml"
-        },
+        reporters:["verbose"],
         coverage:{
-            reporter:["test","html","lcov"],
+            reporter:["text","html","lcov"],
             include:["src/**/*.ts"],
             exclude:["**/*.test.ts","**/*.spec.ts","tests/**"]
         }
