@@ -2,19 +2,18 @@ import { Logger } from "tslog";
 import { CustomerNotFoundError } from "./domain/errors/CustomerNotFound";
 
 
-const error= new CustomerNotFoundError("29485940");
+const error = new CustomerNotFoundError("29485940");
+
+const logger = new Logger();
+
+const errorCode = 'bad_request';
+const codigo = 400;
 
 
-const logger=new Logger({
+logger.error({
 
-});
-
-
-
-
-const port=8080;
-
-logger.info(`Servidor arrancado. Escuchando en el puerto ${port}`);
-
-logger.error(error);
-
+    label: errorCode,
+    errorCode:codigo,
+    stack:error instanceof Error ? error.stack : undefined
+}
+)

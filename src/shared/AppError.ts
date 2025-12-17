@@ -1,18 +1,16 @@
 import { StatusCodes } from "http-status-codes";
 import { ErrorCodes } from "./ErrorCodes";
 
+export abstract class AppError extends Error {
+    readonly errorCode: string;
+    readonly statusCode: number;
+    readonly details?:any
 
-export abstract class AppError extends Error{
-
-    readonly errorCode:string;
-    readonly statusCode:number;
-
-    constructor(message:string,errorCode:string,statusCode:number){
-
+    constructor(message: string, errorCode: string, statusCode: number,details?:any) {
         super(message);
-        this.errorCode=errorCode;
-        this.statusCode=statusCode;
-        (Error as any).captureStackTrace(this,this.constructor)
-        
+        this.errorCode = errorCode;
+        this.statusCode = statusCode;
+        this.details=details;
+        (Error as any).captureStackTrace(this, this.constructor);
     }
 }
