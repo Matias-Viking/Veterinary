@@ -7,6 +7,6 @@ export function errorHandler(error:unknown,_req: Request,res:Response,_next:Next
 
     const xCorrelator=correlator.getId();
     const httpError= ErrorMapper.toHttpError(error,xCorrelator);
-
+    
     
 }
