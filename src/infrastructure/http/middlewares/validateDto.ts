@@ -99,7 +99,10 @@ export function validateRequestBody<T extends object>(cls: new () => T): Request
 export function validateQueryParams<T extends object>(Cls: new () => T): RequestHandler {
     return async function (req: Request, _res: Response, next: NextFunction): Promise<void> {
         try {
-            const dto = plainToInstance(Cls, req.query, { enableImplicitConversion: true });
+            const dto = plainToInstance(Cls, req.query, { enableImplicitConversion: true,
+                excludeExtraneousValues:false,
+                exposeDefaultValues:true
+             });
 
             const errors = await validate(dto, {
                 whitelist: true,
@@ -114,11 +117,50 @@ export function validateQueryParams<T extends object>(Cls: new () => T): Request
                 return next(new IllegalArgumentError(invalidParameters, req.query));
             }
 
-            (req as any).dto = dto;
+            (req as any).queryDto = dto;
 
             return next();
         } catch (error) {
             next(error);
         }
     };
+}
+
+/**
+ * Middleware to validate path params
+ */
+
+export function validatePathParams<T extends object>(Cls: new () => T):RequestHandler{
+
+    return async function(req:Request,_res:Response,next:NextFunction):Promise<void>{
+
+        try {
+
+            const dto=plainToInstance(Cls,req.params,{enableImplicitConversion:true,
+                excludeExtraneousValues:false,
+                exposeDefaultValues:true
+            })
+
+        const errors=await validate(dto,{
+            whitelist:true,
+            forbidNonWhitelisted:true,
+            skipMissingProperties: false,
+        });
+
+        if(errors.length>0){
+
+            const invalidParameters=errors.map((item)=>(mapValidationErrorToInvalidParamter(item,false)));
+            return next(new IllegalArgumentError(invalidParameters,req.params));
+        }
+
+        (req as any).paramsDto=dto;
+
+        return next();
+            
+        } catch (error) {
+
+            next(error);
+        }
+ 
+    }
 }
