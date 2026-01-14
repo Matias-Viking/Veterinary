@@ -3,3 +3,4 @@ coverage
 docs/credentials_db.txt
 .env
 docs/*.bkp
+docs/*.dtmp
