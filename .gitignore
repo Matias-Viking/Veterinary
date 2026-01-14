@@ -2,3 +2,4 @@ node_modules
 coverage
 docs/credentials_db.txt
 .env
+docs/*.bkp
