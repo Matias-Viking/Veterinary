@@ -99,10 +99,11 @@ export function validateRequestBody<T extends object>(cls: new () => T): Request
 export function validateQueryParams<T extends object>(Cls: new () => T): RequestHandler {
     return async function (req: Request, _res: Response, next: NextFunction): Promise<void> {
         try {
-            const dto = plainToInstance(Cls, req.query, { enableImplicitConversion: true,
-                excludeExtraneousValues:false,
-                exposeDefaultValues:true
-             });
+            const dto = plainToInstance(Cls, req.query, {
+                enableImplicitConversion: true,
+                excludeExtraneousValues: false,
+                exposeDefaultValues: true,
+            });
 
             const errors = await validate(dto, {
                 whitelist: true,
@@ -130,37 +131,33 @@ export function validateQueryParams<T extends object>(Cls: new () => T): Request
  * Middleware to validate path params
  */
 
-export function validatePathParams<T extends object>(Cls: new () => T):RequestHandler{
-
-    return async function(req:Request,_res:Response,next:NextFunction):Promise<void>{
-
+export function validatePathParams<T extends object>(Cls: new () => T): RequestHandler {
+    return async function (req: Request, _res: Response, next: NextFunction): Promise<void> {
         try {
+            const dto = plainToInstance(Cls, req.params, {
+                enableImplicitConversion: true,
+                excludeExtraneousValues: false,
+                exposeDefaultValues: true,
+            });
 
-            const dto=plainToInstance(Cls,req.params,{enableImplicitConversion:true,
-                excludeExtraneousValues:false,
-                exposeDefaultValues:true
-            })
+            const errors = await validate(dto, {
+                whitelist: true,
+                forbidNonWhitelisted: true,
+                skipMissingProperties: false,
+            });
 
-        const errors=await validate(dto,{
-            whitelist:true,
-            forbidNonWhitelisted:true,
-            skipMissingProperties: false,
-        });
+            if (errors.length > 0) {
+                const invalidParameters = errors.map((item) =>
+                    mapValidationErrorToInvalidParamter(item, false),
+                );
+                return next(new IllegalArgumentError(invalidParameters, req.params));
+            }
 
-        if(errors.length>0){
+            (req as any).paramsDto = dto;
 
-            const invalidParameters=errors.map((item)=>(mapValidationErrorToInvalidParamter(item,false)));
-            return next(new IllegalArgumentError(invalidParameters,req.params));
-        }
-
-        (req as any).paramsDto=dto;
-
-        return next();
-            
+            return next();
         } catch (error) {
-
             next(error);
         }
- 
-    }
+    };
 }
