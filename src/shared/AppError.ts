@@ -11,7 +11,6 @@ export abstract class AppError extends Error {
         this.errorCode = errorCode;
         this.statusCode = statusCode;
         this.details = details;
-        //(Error as any).captureStackTrace(this, this.constructor);
         Error.captureStackTrace(this, this.constructor);
     }
 }
