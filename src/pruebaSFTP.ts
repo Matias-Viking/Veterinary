@@ -1,6 +1,6 @@
 import Client, { ConnectOptions } from 'ssh2-sftp-client';
 import {parse} from 'csv-parse/sync'
-import fs from 'fs';
+import fs from 'node:fs';
 
 const opcionesDeConexion:ConnectOptions={
     host:'56.124.102.18',
@@ -41,7 +41,7 @@ async function main() {
   console.log('Es Buffer:', Buffer.isBuffer(buffer));
   console.log('Tamaño:', buffer.length);
   console.log('Primeros bytes:\n', buffer.toString('utf8').slice(0, 200));
-  console.log(objetoParseado[0].cuit);
+  console.log(objetoParseado);
 }
 
 main().catch(console.error);
