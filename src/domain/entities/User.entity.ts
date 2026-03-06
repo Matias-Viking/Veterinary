@@ -34,6 +34,11 @@ export class User{
         if (this.status===UserStatusEnum.INACTIVE){
             throw new Error();
         }
+
+        const exists=this.pets.some(p =>p.getName()===newPet.getName() && p.getBirthDate().getTime()===newPet.getBirthDate().getTime());
+        if(exists){
+            throw new Error();
+        }
         this.pets.push(newPet);
     }
 

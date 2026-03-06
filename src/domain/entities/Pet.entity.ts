@@ -6,14 +6,17 @@ export class Pet {
     private name:string;
     private birthDate:Date;
     private species:SpeciesEnum;
+    private breed:string;
     private status:PetStatusEnum;
     private medicalHistory:MedicalRecord[];
 
-    constructor(name:string,birthDate:Date,species:SpeciesEnum,status:PetStatusEnum){
+    constructor(name:string,birthDate:Date,species:SpeciesEnum,breed:string,status:PetStatusEnum){
         this.name=name;
         this.birthDate=birthDate;
         this.species=species;
         this.status=status;
+        this.breed=breed;
+        this.medicalHistory=[];
     }
 
     getName():string{
@@ -24,11 +27,11 @@ export class Pet {
         return this.birthDate;
     }
 
-    getSpecies():string{
+    getSpecies():SpeciesEnum{
         return this.species;
     }
 
-    getStatus():string{
+    getStatus():PetStatusEnum{
         return this.status;
     }
 
@@ -38,7 +41,14 @@ export class Pet {
 
     getAge():number{
         const today=new Date()
+        if(this.birthDate>today){
+            throw new Error();
+        }
         return (today.getFullYear() - this.birthDate.getFullYear())
+    }
+
+    getBreed():string{
+        return this.breed;
     }
 
     addMedicalRecord(newMedicalRecord:MedicalRecord):void{
@@ -51,10 +61,19 @@ export class Pet {
     }
 
     changeStatus(newStatus:PetStatusEnum):void{
+
+        if(this.status===PetStatusEnum.DECEASED){
+            throw new Error();
+        }
         if(this.status===newStatus){
             return;
         }
 
         this.status=newStatus;
+    }
+
+    static create(name:string,birthDate:Date,species:SpeciesEnum,breed:string):Pet{
+
+        return new Pet(name,birthDate,species,breed,PetStatusEnum.ACTIVE)
     }
 }
