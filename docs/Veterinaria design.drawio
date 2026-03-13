@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.3.0 Chrome/140.0.7339.249 Electron/38.7.2 Safari/537.36" version="29.3.0" pages="2">
   <diagram name="Classes" id="HVxiK1R1Hx-trg6nZJ_A">
-    <mxGraphModel dx="2917" dy="1586" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+    <mxGraphModel dx="3190" dy="1728" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -347,7 +347,7 @@
         <mxCell id="h6sxPs6FZ3AoHTJrjZzP-24" parent="h6sxPs6FZ3AoHTJrjZzP-22" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+birthDate:string" vertex="1">
           <mxGeometry height="26" width="140" y="57" as="geometry" />
         </mxCell>
-        <mxCell id="vbkM29oBVMCfdNs-4rnN-10" parent="h6sxPs6FZ3AoHTJrjZzP-22" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+species:string" vertex="1">
+        <mxCell id="vbkM29oBVMCfdNs-4rnN-10" parent="h6sxPs6FZ3AoHTJrjZzP-22" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+species:SpeciesEnum" vertex="1">
           <mxGeometry height="26" width="140" y="83" as="geometry" />
         </mxCell>
         <mxCell id="vbkM29oBVMCfdNs-4rnN-9" parent="h6sxPs6FZ3AoHTJrjZzP-22" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+breed?:string" vertex="1">

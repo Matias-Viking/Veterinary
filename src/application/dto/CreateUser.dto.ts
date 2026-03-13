@@ -1,39 +1,49 @@
-import { IsAlphanumeric, IsArray, IsEmail, IsNotEmpty, IsOptional, IsString, Matches, MaxLength, ValidateNested } from "class-validator";
+import {
+    IsAlphanumeric,
+    IsArray,
+    IsEmail,
+    IsNotEmpty,
+    IsOptional,
+    IsString,
+    Matches,
+    MaxLength,
+    ValidateNested,
+} from "class-validator";
 import { CreatePetDto } from "./CreatePet.dto";
 import { Type } from "class-transformer";
 
-const PHONE_REGEX=/^\d{10}$/;
+const PHONE_REGEX = /^\d{10}$/;
 
-export class CreateUserDto{ 
-
+export class CreateUserDto {
+    @IsString({ message: "Name must be a string" })
+    @MaxLength(30, { message: "Name has a max length of 30 characters" })
     @IsNotEmpty()
-    @IsString({message:"Name must be a string"})
-    @MaxLength(30,{message:"Name has a max length of 30 characters"})
-    name:string;
+    name: string;
 
+    @IsString({ message: "Last name must be a string" })
+    @MaxLength(30, { message: "Last name has a max length of 30 characters" })
     @IsNotEmpty()
-    @IsString({message:"Last name must be a string"})
-    @MaxLength(30,{message:"Last name has a max length of 30 characters"})
-    lastName:string;
+    lastName: string;
 
+    @IsString({ message: "Id number must be a string" })
+    @IsAlphanumeric(undefined, {
+        message: "you must provide a valid id number (only alphanumeric characters)",
+    })
+    @MaxLength(20, { message: "Id number has a max length of 20 characters" })
     @IsNotEmpty()
-    @IsString({message:"Id number must be a string"})
-    @IsAlphanumeric(undefined,{message:"you must provide a valid id number (only alphanumeric characters)"})
-    @MaxLength(20,{message:"Id number has a max length of 20 characters"})
-    idNumber:string;
+    idNumber: string;
+
+    @Matches(PHONE_REGEX, { message: "You must provide a valid phone number" })
+    @IsOptional()
+    phoneNumber?: string;
 
     @IsOptional()
-    @Matches(PHONE_REGEX,{message:"You must give a valid phone number"})
-    phoneNumber?:string;
+    @IsEmail({}, { message: "you must provide a valid email" })
+    email?: string;
 
+    @Type(() => CreatePetDto)
+    @IsArray({ message: "pets must be an array" })
+    @ValidateNested({ each: true })
     @IsOptional()
-    @IsEmail({},{message:"you must give a valid email"})
-    email?:string;
-
-    @IsOptional()
-    @IsArray({message:"pets must be an array"})
-    @ValidateNested({each:true})
-    @Type(()=>CreatePetDto)
-    pets?:CreatePetDto[]
-
+    pets?: CreatePetDto[];
 }

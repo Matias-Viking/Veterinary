@@ -3,77 +3,80 @@ import { SpeciesEnum } from "../enums/Species.enum";
 import { MedicalRecord } from "./MedicalRecord.entity";
 
 export class Pet {
-    private name:string;
-    private birthDate:Date;
-    private species:SpeciesEnum;
-    private breed:string;
-    private status:PetStatusEnum;
-    private medicalHistory:MedicalRecord[];
+    private name: string;
+    private birthDate: Date;
+    private species: SpeciesEnum;
+    private breed: string;
+    private status: PetStatusEnum;
+    private medicalHistory: MedicalRecord[];
 
-    constructor(name:string,birthDate:Date,species:SpeciesEnum,breed:string,status:PetStatusEnum){
-        this.name=name;
-        this.birthDate=birthDate;
-        this.species=species;
-        this.status=status;
-        this.breed=breed;
-        this.medicalHistory=[];
+    constructor(
+        name: string,
+        birthDate: Date,
+        species: SpeciesEnum,
+        breed: string,
+        status: PetStatusEnum,
+    ) {
+        this.name = name;
+        this.birthDate = birthDate;
+        this.species = species;
+        this.status = status;
+        this.breed = breed;
+        this.medicalHistory = [];
     }
 
-    getName():string{
+    getName(): string {
         return this.name;
     }
 
-    getBirthDate():Date{
+    getBirthDate(): Date {
         return this.birthDate;
     }
 
-    getSpecies():SpeciesEnum{
+    getSpecies(): SpeciesEnum {
         return this.species;
     }
 
-    getStatus():PetStatusEnum{
+    getStatus(): PetStatusEnum {
         return this.status;
     }
 
-    getMedicalHistory():MedicalRecord[]{
+    getMedicalHistory(): MedicalRecord[] {
         return [...this.medicalHistory];
     }
 
-    getAge():number{
-        const today=new Date()
-        if(this.birthDate>today){
+    getAge(): number {
+        const today = new Date();
+        if (this.birthDate > today) {
             throw new Error();
         }
-        return (today.getFullYear() - this.birthDate.getFullYear())
+        return today.getFullYear() - this.birthDate.getFullYear();
     }
 
-    getBreed():string{
+    getBreed(): string {
         return this.breed;
     }
 
-    addMedicalRecord(newMedicalRecord:MedicalRecord):void{
-
-        if(this.status===PetStatusEnum.DECEASED){
+    addMedicalRecord(newMedicalRecord: MedicalRecord): void {
+        if (this.status === PetStatusEnum.DECEASED) {
             throw new Error();
         }
 
         this.medicalHistory.push(newMedicalRecord);
     }
 
-    changeStatus(newStatus:PetStatusEnum):void{
-
-        if(this.status===PetStatusEnum.DECEASED){
+    changeStatus(newStatus: PetStatusEnum): void {
+        if (this.status === PetStatusEnum.DECEASED) {
             throw new Error();
         }
-        if(this.status===newStatus){
+        if (this.status === newStatus) {
             return;
         }
 
-        this.status=newStatus;
+        this.status = newStatus;
     }
 
-    static create(name:string,birthDate:Date,species:SpeciesEnum,breed:string):Pet{
-
-        return new Pet(name,birthDate,species,breed,PetStatusEnum.ACTIVE)
+    static create(name: string, birthDate: Date, species: SpeciesEnum, breed: string): Pet {
+        return new Pet(name, birthDate, species, breed, PetStatusEnum.ACTIVE);
     }
 }

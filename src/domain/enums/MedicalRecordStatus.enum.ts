@@ -1,6 +1,5 @@
-
-export enum MedicalRecordStatus{
-    OPEN='OPEN',
-    UPDATED='UPDATED',
-    CLOSED='CLOSED'
+export enum MedicalRecordStatus {
+    OPEN = "OPEN",
+    UPDATED = "UPDATED",
+    CLOSED = "CLOSED",
 }

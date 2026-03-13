@@ -1,73 +1,101 @@
 import { UserStatusEnum } from "../enums/UserStatus.enum";
 import { Pet } from "./Pet.entity";
 
-export class User{
+export class User {
+    private name: string;
+    private lastName: string;
+    private idNumber: string;
+    private phoneNumber?: string;
+    private email?: string;
+    private status: UserStatusEnum;
+    private creationDate: Date;
+    private pets: Pet[];
 
-    private name:string;
-    private lastName:string;
-    private idNumber:string;
-    private phoneNumber?:string;
-    private email?:string;
-    private status:UserStatusEnum;
-    private creationDate:Date;
-    private pets:Pet[];
-
-    constructor(name:string,lastName:string,idNumber:string,status:UserStatusEnum,creationDate:Date,phoneNumber?:string,email?:string,pets?:Pet[]){
-        this.name=name;
-        this.lastName=lastName;
-        this.idNumber=idNumber;
-        this.status=status;
-        this.creationDate=creationDate;
-        this.phoneNumber=phoneNumber;
-        this.email=email;
-        this.pets=pets ?? [];
+    constructor(
+        name: string,
+        lastName: string,
+        idNumber: string,
+        status: UserStatusEnum,
+        creationDate: Date,
+        phoneNumber?: string,
+        email?: string,
+        pets?: Pet[],
+    ) {
+        this.name = name;
+        this.lastName = lastName;
+        this.idNumber = idNumber;
+        this.status = status;
+        this.creationDate = creationDate;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.pets = pets ?? [];
     }
 
-    changeStatus(newStatus:UserStatusEnum):void{
-        if(this.status===newStatus){
+    changeStatus(newStatus: UserStatusEnum): void {
+        if (this.status === newStatus) {
             return;
         }
-        this.status=newStatus;
+        this.status = newStatus;
     }
 
-    addPet(newPet:Pet):void{
-        if (this.status===UserStatusEnum.INACTIVE){
+    addPet(newPet: Pet): void {
+        if (this.status === UserStatusEnum.INACTIVE) {
             throw new Error();
         }
 
-        const exists=this.pets.some(p =>p.getName()===newPet.getName() && p.getBirthDate().getTime()===newPet.getBirthDate().getTime());
-        if(exists){
+        const exists = this.pets.some(
+            (p) =>
+                p.getName() === newPet.getName() &&
+                p.getBirthDate().getTime() === newPet.getBirthDate().getTime(),
+        );
+        if (exists) {
             throw new Error();
         }
         this.pets.push(newPet);
     }
 
-    getName():string{
+    getName(): string {
         return this.name;
     }
-    getLastName():string{
+    getLastName(): string {
         return this.lastName;
     }
-    getIdNumber():string{
+    getIdNumber(): string {
         return this.idNumber;
     }
-    getStatus():UserStatusEnum{
+    getStatus(): UserStatusEnum {
         return this.status;
     }
-    getCreationDate():Date{
+    getCreationDate(): Date {
         return this.creationDate;
     }
-    getEmail():string{
-        return this.email ?? ''
+    getEmail(): string {
+        return this.email ?? "";
     }
-    getPhoneNumber():string{
-        return this.phoneNumber ?? ''
+    getPhoneNumber(): string {
+        return this.phoneNumber ?? "";
     }
-    getPets():Pet[]{
-        return[...this.pets];
+    getPets(): Pet[] {
+        return [...this.pets];
     }
 
-    static create(name:string,lastName:string,idNumber:string,phoneNumber?:string,email?:string,pets?:Pet[]):User{
-        return new User(name,lastName,idNumber,UserStatusEnum.ACTIVE,new Date(),phoneNumber,email,pets)
+    static create(
+        name: string,
+        lastName: string,
+        idNumber: string,
+        phoneNumber?: string,
+        email?: string,
+        pets?: Pet[],
+    ): User {
+        return new User(
+            name,
+            lastName,
+            idNumber,
+            UserStatusEnum.ACTIVE,
+            new Date(),
+            phoneNumber,
+            email,
+            pets,
+        );
     }
 }
