@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.3.0 Chrome/140.0.7339.249 Electron/38.7.2 Safari/537.36" version="29.3.0" pages="2">
   <diagram name="Classes" id="HVxiK1R1Hx-trg6nZJ_A">
-    <mxGraphModel dx="3190" dy="1728" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+    <mxGraphModel dx="2917" dy="1586" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -208,7 +208,7 @@
         <mxCell id="IlJP9jgGevNhU7hNl6CH-82" parent="IlJP9jgGevNhU7hNl6CH-81" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+save(user:UserEntity):Promise&amp;lt;UserEntity&amp;gt;" vertex="1">
           <mxGeometry height="26" width="470" y="30" as="geometry" />
         </mxCell>
-        <mxCell id="IlJP9jgGevNhU7hNl6CH-83" parent="IlJP9jgGevNhU7hNl6CH-81" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+findBy(name?:string,lastName?:string,idNumber?:string):Promise&amp;lt;UserEntity | null&amp;gt;" vertex="1">
+        <mxCell id="IlJP9jgGevNhU7hNl6CH-83" parent="IlJP9jgGevNhU7hNl6CH-81" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+findOne(idNumber?:string):Promise&amp;lt;UserEntity | null&amp;gt;" vertex="1">
           <mxGeometry height="26" width="470" y="56" as="geometry" />
         </mxCell>
         <mxCell id="IlJP9jgGevNhU7hNl6CH-96" parent="IlJP9jgGevNhU7hNl6CH-81" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+findAll():Promise&amp;lt;UserEntity[]&amp;gt;" vertex="1">

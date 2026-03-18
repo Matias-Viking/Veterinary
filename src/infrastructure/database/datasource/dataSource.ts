@@ -3,7 +3,7 @@ import { QueryLogger } from "../logger/QueryLogger";
 import { environment } from "../../config/environment/environment";
 import { SnakeNamingStrategy } from "typeorm-naming-strategies";
 
-export const DatasourseMSSQL = new DataSource({
+export const DatasourceMSSQL = new DataSource({
     type: "mssql",
     host: environment.DB_HOST,
     port: environment.DB_PORT,
