@@ -1,4 +1,5 @@
 import { DatasourceMSSQL } from "./infrastructure/database/datasource/dataSource";
+import 'reflect-metadata';
 
 async function bootstrap(): Promise<void> {
     try {
